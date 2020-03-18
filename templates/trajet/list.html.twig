@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="table text-center">
+        <tr>
+            <th class="active text-center">Ville de depart</th>
+            <th class="active text-center">date depart</th>
+            <th class="active text-center">Heure depart</th>
+            <th class="active text-center">Ville d'arrivée</th>
+            <th class="active text-center">Date d'arrivée</th>
+            <th class="active text-center">Heure d'arrivée</th>
+            <th class="active text-center">Nombre de places disponibles</th>
+            <th class="active text-center">Prix</th>
+            <th class="active text-center">Distance</th>
+            <th colspan=2 class="active text-center">Actions</th>
+        </tr>
+
+        {% for trajet in trajets %}
+            <tr>
+                <td><a href="{{ path('trajet.show', {id: trajet.id}) }}">{{ trajet.VilleD }}</a></td>
+                <td>
+                    <a href="{{ path('trajet.show', {id: trajet.id}) }}">
+                        {{ trajet.DateD|date("d/m/Y") }}
+                    </a>
+                </td>
+                <td>{{ trajet.HeureD|date("h:i:s") }}</td>
+                <td>{{ trajet.VilleA }}</td>
+                <td>{{ trajet.DateA|date("d/m/Y") }}</td>
+                <td>{{ trajet.HeureA|date("h:i:s") }}</td>
+                <td>{{ trajet.PlaceDispo }}</td>
+                <td>{{ trajet.prix }}</td>
+                <td>{{ trajet.distance }}</td>
+                <td><a href="#"><button type="button" class="btn btn-primary glyphicon glyphicon-pencil"></button></a></td>
+                <td><a href="#"><button type="button" class="btn btn-danger glyphicon glyphicon-trash"></button></a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
