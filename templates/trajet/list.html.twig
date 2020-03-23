@@ -17,9 +17,9 @@
 
         {% for trajet in trajets %}
             <tr>
-                <td><a href="{{ path('trajet.show', {id: trajet.id}) }}">{{ trajet.VilleD }}</a></td>
+                <td><a href="{{ path('trajet.show', {slug: trajet.slug}) }}">{{ trajet.VilleD }}</a></td>
                 <td>
-                    <a href="{{ path('trajet.show', {id: trajet.id}) }}">
+                    <a href="{{ path('trajet.show', {slug: trajet.slug}) }}">
                         {{ trajet.DateD|date("d/m/Y") }}
                     </a>
                 </td>

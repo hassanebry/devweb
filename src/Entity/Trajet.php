@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Utilisateur;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -92,6 +93,13 @@ class Trajet
      * @ORM\OneToMany(targetEntity="App\Entity\Avis", mappedBy="trajet")
      */
     private $avis;
+
+    /**
+     * @var string
+     * @Gedmo\Slug(fields={"villeD"})
+     * @ORM\Column(type="string", length=128, unique=true, nullable=false)
+    */
+    private $slug;
 
     public function __construct()
     {
@@ -309,6 +317,22 @@ class Trajet
         }
 
         return $this;
+    }
+
+    /**
+     * @return string|null
+    */
+    public function getSlug() : ?string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+    */
+    public function setSlug(string $slug): void
+    {
+        $this->slug = $slug;
     }
 
     /**

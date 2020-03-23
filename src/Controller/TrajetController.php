@@ -28,8 +28,30 @@ class TrajetController extends AbstractController
     }
 
     /**
+	 * Créer un nouveau trajet.
+	 * @Route("/nouveau-trajet", name="trajet.create")
+	 * @param Request $request
+	 * @param EntityManagerInterface $em
+	 * @return RedirectResponse|Response
+	*/
+	public function create(Request $request, EntityManagerInterface $em) : Response
+	{
+		$trajet = new Trajet();
+		$form = $this->createForm(TrajetType::class, $trajet);
+		$form->handleRequest($request);
+		if ($form->isSubmitted() && $form->isValid()) {
+        $em->persist($trajet);
+		$em->flush();
+		return $this->redirectToRoute('trajet.list');
+	}
+		return $this->render('trajet/create.html.twig', [
+		'form' => $form->createView(),
+		]);
+    }
+
+    /**
      * Chercher et afficher un trajet.
-     * @Route("/trajet/{id}", name="trajet.show", requirements={"id" = "\d+"})
+     * @Route("/trajet/{slug}", name="trajet.show")
      * @param Trajet $trajet
      * @return Response
      */
@@ -39,6 +61,10 @@ class TrajetController extends AbstractController
         return $this->render('trajet/show.html.twig', [
         'trajet' => $trajet,
     ]);
-}
+    }
+
+    
+
+
 
 }

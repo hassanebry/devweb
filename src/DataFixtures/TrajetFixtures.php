@@ -26,7 +26,8 @@ class TrajetFixtures extends Fixture implements DependentFixtureInterface
         ->setDistance(100)
         ->setDureeT(3)
         ->setHeureD(new \DateTime('12:00:00'))
-        ->setHeureA(new \DateTime('15:00:00'));
+        ->setHeureA(new \DateTime('15:00:00'))
+        ->setSlug("nantes-angers");
         $manager->persist($trajet1);
 
         $trajet2 = new Trajet();
@@ -40,7 +41,8 @@ class TrajetFixtures extends Fixture implements DependentFixtureInterface
         ->setDistance(100)
         ->setDureeT(3)
         ->setHeureD(new \DateTime('12:00:00'))
-        ->setHeureA(new \DateTime('15:00:00'));
+        ->setHeureA(new \DateTime('15:00:00'))
+        ->setSlug("paris-lyon");
 		
         $manager->persist($trajet2);
 
